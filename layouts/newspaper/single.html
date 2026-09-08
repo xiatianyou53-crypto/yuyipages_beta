@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="container page-wrap narrow">
+  <nav class="breadcrumb"><a href="/newspaper/">校报归档</a> › <span>{{ .Title }}</span></nav>
+
+  <article class="prose-card issue-detail">
+    <header class="page-head issue-head">
+      <h1 class="page-title">{{ .Title }}</h1>
+      <p class="card-meta">第 {{ .Params.issue }} 期 · {{ .Date.Format "2006年01月02日" }}</p>
+      {{ with .Params.summary }}<p class="issue-summary">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="issue-actions">
+      {{ with .Params.pdf }}
+      <a class="btn btn-primary" href="{{ . }}" download target="_blank" rel="noopener">⬇ 下载 PDF</a>
+      {{ end }}
+      <a class="btn btn-outline" href="/newspaper/">← 返回全部校报</a>
+    </div>
+
+    {{ with .Params.pdf }}
+    <div class="pdf-frame-wrap">
+      <iframe
+        class="pdf-frame"
+        src="{{ . }}"
+        title="校报 PDF 预览：{{ $.Title }}"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="no-referrer"></iframe>
+      <p class="pdf-tip">若上方预览无法显示，请使用右下角"在新窗口打开"，或直接点击上方"下载 PDF"。</p>
+    </div>
+    {{ else }}
+    <p class="empty-note">本期的 PDF 尚未上传。</p>
+    {{ end }}
+  </article>
+</div>
+{{ end }}

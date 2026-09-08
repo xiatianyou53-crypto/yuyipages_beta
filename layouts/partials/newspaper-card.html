@@ -1,0 +1,19 @@
+{{ $issue := .issue }}
+{{ $featured := .featured | default false }}
+<article class="card newspaper-card{{ if $featured }} newspaper-featured{{ end }}">
+  <a class="newspaper-link" href="{{ $issue.RelPermalink }}">
+    <div class="newspaper-cover">
+      {{ with $issue.Params.cover }}
+      <img src="{{ . }}" alt="{{ $issue.Title }} 封面" loading="lazy">
+      {{ else }}
+      <div class="cover-placeholder"><span>校园语意</span><strong>{{ $issue.Title }}</strong></div>
+      {{ end }}
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">{{ $issue.Title }}</h3>
+      <p class="card-meta">第 {{ $issue.Params.issue }} 期 · {{ $issue.Date.Format "2006年01月02日" }}</p>
+      {{ with $issue.Params.summary }}<p class="card-desc">{{ . | truncate 90 }}</p>{{ end }}
+      <span class="btn btn-primary btn-sm">在线阅读 · 下载</span>
+    </div>
+  </a>
+</article>

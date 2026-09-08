@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="container page-wrap">
+  <header class="page-head">
+    <h1 class="page-title">{{ .Title }}</h1>
+    {{ with .Content }}<div class="prose page-lead">{{ . }}</div>{{ end }}
+  </header>
+
+  {{ $pages := .RegularPages }}
+  {{ if eq .Kind "home" }}{{ $pages = site.RegularPages }}{{ end }}
+
+  {{ if $pages }}
+  <div class="grid posts-grid">
+    {{ range (.Paginate $pages).Pages }}
+    <article class="card post-card">
+      <a href="{{ .RelPermalink }}">
+        <div class="thumb">
+          {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{ .Title }}</h3>
+          <p class="card-meta">{{ .Date.Format "2006年01月02日" }}</p>
+          <p class="card-desc">{{ .Summary | truncate 70 }}</p>
+        </div>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+  {{ if gt .Paginator.TotalPages 1 }}
+  <nav class="pagination">
+    {{ if .Paginator.HasPrev }}<a href="{{ .Paginator.Prev.URL }}">上一页</a>{{ end }}
+    <span>第 {{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }} 页</span>
+    {{ if .Paginator.HasNext }}<a href="{{ .Paginator.Next.URL }}">下一页</a>{{ end }}
+  </nav>
+  {{ end }}
+  {{ else }}
+  <p class="empty-note">这里还没有内容，去后台发布第一篇吧。</p>
+  {{ end }}
+</div>
+{{ end }}

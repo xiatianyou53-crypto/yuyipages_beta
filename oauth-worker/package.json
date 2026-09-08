@@ -1,0 +1,12 @@
+{
+  "name": "yuyi-cms-oauth-worker",
+  "private": true,
+  "description": "Decap CMS GitHub OAuth proxy for Cloudflare Pages",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

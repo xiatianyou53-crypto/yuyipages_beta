@@ -1,0 +1,85 @@
+{{ define "main" }}
+{{ $slides := site.Params.carousel | default slice }}
+{{ $issues := (where site.RegularPages "Section" "newspaper").ByDate.Reverse }}
+{{ $latestIssue := false }}
+{{ if $issues }}{{ $latestIssue = index $issues 0 }}{{ end }}
+{{ $recentPosts := first 3 (where site.RegularPages "Section" "posts") }}
+
+<!-- Hero / 轮播 -->
+<section class="hero">
+  {{ if gt (len $slides) 0 }}
+  <div class="hero-slider" id="heroSlider">
+    {{ range $i, $s := $slides }}
+    <div class="slide{{ if eq $i 0 }} is-active{{ end }}">
+      <img src="{{ $s.image }}" alt="{{ $s.caption }}">
+      <div class="slide-caption"><h2>{{ $s.caption }}</h2></div>
+    </div>
+    {{ end }}
+    <button class="slide-btn prev" data-step="-1" aria-label="上一张">‹</button>
+    <button class="slide-btn next" data-step="1" aria-label="下一张">›</button>
+    <div class="slide-dots">
+      {{ range $i, $s := $slides }}<button class="dot{{ if eq $i 0 }} is-active{{ end }}" data-index="{{ $i }}" aria-label="第{{ add $i 1 }}张"></button>{{ end }}
+    </div>
+  </div>
+  {{ else }}
+  <div class="hero-static"><h1>{{ site.Params.heroTitle }}</h1></div>
+  {{ end }}
+  <div class="hero-tagline container">
+    <h1>{{ site.Params.heroTitle }}</h1>
+    <p>{{ site.Params.heroSubtitle }}</p>
+  </div>
+</section>
+
+<div class="container page-wrap">
+
+  <!-- 社团简介 -->
+  <section class="home-section">
+    <div class="section-head">
+      <h2 class="section-title">{{ site.Params.aboutTitle }}</h2>
+      <span class="section-en">ABOUT US</span>
+    </div>
+    <div class="about-card">
+      <p>{{ site.Params.aboutBody | plainify }}</p>
+      <a class="btn btn-outline" href="/about/">了解更多 →</a>
+    </div>
+  </section>
+
+  <!-- 最新一期校报 -->
+  {{ if $latestIssue }}
+  <section class="home-section">
+    <div class="section-head">
+      <h2 class="section-title">最新一期校报</h2>
+      <span class="section-en">LATEST ISSUE</span>
+      <a class="more-link" href="/newspaper/">全部校报 →</a>
+    </div>
+    {{ partial "newspaper-card.html" (dict "issue" $latestIssue "featured" true) }}
+  </section>
+  {{ end }}
+
+  <!-- 最新文章 -->
+  <section class="home-section">
+    <div class="section-head">
+      <h2 class="section-title">最新文章</h2>
+      <span class="section-en">LATEST POSTS</span>
+      <a class="more-link" href="/posts/">全部文章 →</a>
+    </div>
+    <div class="grid posts-grid">
+      {{ range $recentPosts }}
+      <article class="card post-card">
+        <a href="{{ .RelPermalink }}">
+          <div class="thumb">
+            {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ .Title }}</h3>
+            <p class="card-meta">{{ .Date.Format "2006年01月02日" }}</p>
+            <p class="card-desc">{{ .Summary | truncate 70 }}</p>
+          </div>
+        </a>
+      </article>
+      {{ end }}
+    </div>
+  </section>
+
+</div>
+{{ end }}
