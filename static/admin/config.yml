@@ -10,13 +10,11 @@
 #       4) 把下面 repo 换成 owner/repo，并把 base_url 换成你的 Worker 域名
 #   B. 最简方案（愿意用 Netlify 托管后台登录时）：改用 git-gateway 后端，见文件末尾注释块。
 # ==========================================================================
+# 身份认证：方案 B —— Netlify Identity + git-gateway（Decap 原生，最省心）。
+# 详见 docs/后台部署指南.md。需要把仓库连到 Netlify 并开启 Identity。
 backend:
-  name: github
-  repo: xiatianyou53-crypto/yuyipages_beta        # 你的 GitHub 仓库
-  branch: main                      # 发布到 main 分支（Hugo 与 Cloudflare 均监听此分支）
-  base_url: https://yuyi-cms-oauth.xiatianyou53.workers.dev   # 已部署的 OAuth Worker 域名
-  auth_endpoint: auth
-  site_domain: yuyipages-beta.pages.dev                        # 你站点的访问域名
+  name: git-gateway
+  branch: main
 
 # 上传的媒体文件（PDF、图片）存放与对外路径
 media_folder: static/uploads
@@ -26,7 +24,7 @@ public_folder: /uploads
 
 locale: 'zh_Hans'                  # 后台界面中文
 
-# 站点 URL（用于相对路径解析）
+# 站点 URL：用 Netlify 后，部署完成请改成你的实际域名（如 https://你的名字.netlify.app）
 site_url: https://yuyipages-beta.pages.dev/
 
 # 发布方式：不设置 publish_mode 即为“直接发布”到 main（适合 Cloudflare 静态环境）。
