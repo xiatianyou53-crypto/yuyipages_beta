@@ -2,7 +2,7 @@
 # 辽宁省实验中学校园语意报社 —— Hugo 站点配置
 # 说明：把 baseURL 替换成你最终绑定的域名（部署后再替换）
 # =============================================================
-baseURL: 'https://example.pages.dev/'
+baseURL: 'https://yuyipages-beta.pages.dev/'
 locale: 'zh-cn'
 defaultContentLanguage: 'zh-cn'
 title: '辽宁省实验中学校园语意报社'

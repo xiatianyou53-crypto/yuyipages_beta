@@ -1,8 +1,9 @@
----
-name: yuyi-cms-oauth
-main: src/index.js
-compatibility_date: '2024-01-01'
-# 部署后把 OAuth App 里填写的 Callback URL 域名改到这里
-# 开发示例：wrangler dev 时可用 *.workers.dev 或 localhost
-vars:
-  GITHUB_SCOPE: 'public_repo'
+name = "yuyi-cms-oauth"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# ---- 部署 OAuth Worker 的配置（Client Secret 勿写此处，用 wrangler secret 或网页机密设置）----
+[vars]
+GITHUB_CLIENT_ID = "Ov23li1kGUZbfOMZsK36"
+# 仓库为公开用 public_repo；若 yuyipages_beta 是私有仓库，请改为 repo
+GITHUB_SCOPE = "repo"

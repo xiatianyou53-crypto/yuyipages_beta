@@ -14,10 +14,9 @@ backend:
   name: github
   repo: xiatianyou53-crypto/yuyipages_beta        # 你的 GitHub 仓库
   branch: main                      # 发布到 main 分支（Hugo 与 Cloudflare 均监听此分支）
-  # ---- 部署完 oauth-worker 后，取消下面注释并填写（见 docs/后台部署指南.md） ----
-  # base_url: https://yuyi-oauth.你的子域.workers.dev   # 你部署的 OAuth Worker 域名
-  # auth_endpoint: auth
-  # site_domain: 你的.pages.dev                          # 你站点的访问域名
+  base_url: https://yuyi-cms-oauth.xiatianyou53.workers.dev   # 已部署的 OAuth Worker 域名
+  auth_endpoint: auth
+  site_domain: yuyipages-beta.pages.dev                        # 你站点的访问域名
 
 # 上传的媒体文件（PDF、图片）存放与对外路径
 media_folder: static/uploads
@@ -27,8 +26,8 @@ public_folder: /uploads
 
 locale: 'zh_Hans'                  # 后台界面中文
 
-# 站点 URL（用于相对路径解析；部署后替换）
-site_url: https://example.pages.dev/
+# 站点 URL（用于相对路径解析）
+site_url: https://yuyipages-beta.pages.dev/
 
 # 发布方式：不设置 publish_mode 即为“直接发布”到 main（适合 Cloudflare 静态环境）。
 # 如需“草稿-审核”流程，改 netlify 方案并设置 publish_mode: editorial_workflow。
