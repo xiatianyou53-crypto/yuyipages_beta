@@ -12,9 +12,7 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script>
-    {{ partial "scripts.html" . }}
-  </script>
+  <script src="{{ "js/main.js" | relURL }}" defer></script>
   {{ block "scripts" . }}{{ end }}
 </body>
 </html>
