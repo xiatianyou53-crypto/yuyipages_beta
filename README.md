@@ -6,6 +6,7 @@
 > **快速入口**
 > - 管理员/技术负责人：见 **[docs/部署指南.md](docs/部署指南.md)**（上线全流程 + 验证清单 + 排查）。
 > - 发布内容的社员：见 **[docs/操作指南.md](docs/操作指南.md)**（登录 + 上传校报 PDF + 发文章）。
+> - 让 /admin/ 后台真正可用：见 **[docs/后台部署指南.md](docs/后台部署指南.md)**（OAuth App + Worker + Cloudflare Access + 邀请社员）。
 > - `oauth-worker/` 为可选组件（Cloudflare 方案 A 的后台登录 Worker）。
 
 > 目录说明：源码在仓库根目录；`public/` 为本地构建产物，不提交。

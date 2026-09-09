@@ -12,12 +12,12 @@
 # ==========================================================================
 backend:
   name: github
-  repo: owner-name/repo-name        # ← 替换为你的 GitHub 仓库，如 lnsy/school-news
+  repo: xiatianyou53-crypto/yuyipages_beta        # 你的 GitHub 仓库
   branch: main                      # 发布到 main 分支（Hugo 与 Cloudflare 均监听此分支）
-  # ---- 仅使用“方案 A（OAuth 代理 Worker）”时取消下面三行注释并填写 ----
-  # base_url: https://oauth.example.workers.dev   # 你部署的 OAuth Worker 域名
+  # ---- 部署完 oauth-worker 后，取消下面注释并填写（见 docs/后台部署指南.md） ----
+  # base_url: https://yuyi-oauth.你的子域.workers.dev   # 你部署的 OAuth Worker 域名
   # auth_endpoint: auth
-  # site_domain: example.pages.dev
+  # site_domain: 你的.pages.dev                          # 你站点的访问域名
 
 # 上传的媒体文件（PDF、图片）存放与对外路径
 media_folder: static/uploads
