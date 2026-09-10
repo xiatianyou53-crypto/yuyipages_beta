@@ -109,19 +109,5 @@
         }
       }
     } catch (e) {}
-
-    // ===== 下滑隐藏导航条 =====
-    try {
-      var bar = document.querySelector('.site-nav');
-      if (bar && !prefersReduce()) {
-        var lastY = window.pageYOffset;
-        window.addEventListener('scroll', function () {
-          var y = window.pageYOffset;
-          if (y > 240 && y > lastY) { bar.classList.add('is-hidden'); }
-          else { bar.classList.remove('is-hidden'); }
-          lastY = y;
-        }, { passive: true });
-      }
-    } catch (e) {}
   });
 })();

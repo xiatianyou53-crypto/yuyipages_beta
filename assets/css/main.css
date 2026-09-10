@@ -93,7 +93,7 @@ h1, h2, h3, h4 {
 
 /* ---------- 报头 Masthead（居中刊名 + 双线分隔） ---------- */
 .site-header { position: relative; z-index: 100; background: #fff; }
-.masthead { padding: 32px 0 20px; text-align: center; border-bottom: 3px double var(--ink); }
+.masthead { padding: 24px 0 16px; text-align: center; border-bottom: 3px double var(--ink); }
 .masthead-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .brand { display: inline-flex; align-items: center; gap: 14px; color: var(--ink); }
 .brand:hover { color: var(--primary); }
@@ -110,9 +110,7 @@ h1, h2, h3, h4 {
   -webkit-backdrop-filter: saturate(180%) blur(12px);
   border-top: 3px solid var(--primary);
   border-bottom: 1px solid var(--border);
-  transition: transform 0.3s var(--ease);
 }
-.site-nav.is-hidden { transform: translateY(-110%); }
 .nav-inner { position: relative; display: flex; align-items: center; justify-content: center; min-height: 52px; }
 
 .nav-list { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
@@ -146,13 +144,8 @@ h1, h2, h3, h4 {
   position: absolute; left: 28px; right: 28px; bottom: 26px; padding: 0;
   color: #fff; text-align: left;
 }
-.cap-label {
-  display: inline-block; background: var(--primary); color: #fff;
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.26em;
-  padding: 5px 12px; border-radius: var(--radius-sm);
-}
 .slide-caption h2 {
-  margin: 12px 0 0; font-size: clamp(1.2rem, 2.6vw, 1.75rem); font-weight: 700; color: #fff;
+  margin: 0; font-size: clamp(1.2rem, 2.6vw, 1.75rem); font-weight: 700; color: #fff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
 }
 
@@ -216,12 +209,6 @@ h1, h2, h3, h4 {
 .newspaper-card .newspaper-link { display: block; }
 .newspaper-cover { height: 284px; overflow: hidden; position: relative; background: var(--surface-3); }
 .newspaper-cover img { width: 100%; height: 100%; object-fit: cover; }
-.issue-badge {
-  position: absolute; top: 12px; left: 12px; z-index: 2;
-  background: var(--primary); color: #fff; font-size: 0.76rem; font-weight: 600;
-  letter-spacing: 0.1em; padding: 5px 12px; border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card);
-}
 .cover-placeholder {
   height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
   color: #fff; background: linear-gradient(150deg, var(--primary), var(--accent));
