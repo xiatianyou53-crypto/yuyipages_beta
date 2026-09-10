@@ -8,7 +8,7 @@
 <!-- Hero / 轮播 -->
 <section class="hero">
   {{ if gt (len $slides) 0 }}
-  <div class="hero-slider" id="heroSlider">
+  <div class="hero-slider" id="heroSlider" role="region" aria-roledescription="carousel" aria-label="校园图片轮播">
     {{ range $i, $s := $slides }}
     <div class="slide{{ if eq $i 0 }} is-active{{ end }}">
       <img src="{{ $s.image }}" alt="{{ $s.caption }}">

@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="container page-wrap narrow">
-  <nav class="breadcrumb"><a href="/">首页</a> › <span>{{ .Title }}</span></nav>
+  <nav class="breadcrumb"><a href="/">首页</a>{{ with .Section }} › <a href="/{{ . }}/">{{ with $.CurrentSection }}{{ .Title }}{{ else }}{{ . }}{{ end }}</a>{{ end }} › <span>{{ .Title }}</span></nav>
   <article class="prose-card">
     <header class="page-head">
       <h1 class="page-title">{{ .Title }}</h1>

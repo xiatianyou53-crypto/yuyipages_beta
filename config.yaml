@@ -43,6 +43,8 @@ params:
   # 首页顶部标语（hero）
   heroTitle: '用心记录，向世界发声'
   heroSubtitle: '辽宁省实验中学校园语意报社 · 每一期报纸，都是我们与校园的对话'
+  # 社交分享默认缩略图（og:image）；页面有 cover 时优先用 cover
+  ogImage: '/images/cover-sample.svg'
   # 社团简介（首页"关于我们"区块）
   aboutTitle: '关于校园语意报社'
   aboutBody: >

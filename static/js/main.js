@@ -1,4 +1,4 @@
-/* 校园语意报社 —— 页面交互脚本（菜单 + 轮播） */
+/* 校园语意报社 —— 页面交互脚本（移动端菜单 + 首页轮播） */
 (function () {
   function onReady(fn) {
     if (document.readyState === 'loading') {
@@ -28,8 +28,12 @@
         var slides = slider.querySelectorAll('.slide');
         var dots = slider.querySelectorAll('.dot');
         var idx = 0;
+        var timer = null;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         function go(n) {
           var total = slides.length;
+          if (!total) return;
           idx = ((n % total) + total) % total;
           for (var s = 0; s < slides.length; s++) {
             slides[s].classList.toggle('is-active', s === idx);
@@ -38,6 +42,7 @@
             dots[d].classList.toggle('is-active', d === idx);
           }
         }
+
         var prevBtn = slider.querySelector('.slide-btn.prev');
         var nextBtn = slider.querySelector('.slide-btn.next');
         if (prevBtn) { prevBtn.addEventListener('click', function () { go(idx - 1); }); }
@@ -45,7 +50,21 @@
         for (var i = 0; i < dots.length; i++) {
           (function (i) { dots[i].addEventListener('click', function () { go(i); }); })(i);
         }
-        setInterval(function () { go(idx + 1); }, 5000);
+
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+        function start() {
+          if (reduce) return;              // 尊重系统“减少动态效果”
+          stop();
+          timer = setInterval(function () { go(idx + 1); }, 6000);
+        }
+        start();
+        slider.addEventListener('mouseenter', stop);   // 悬停暂停
+        slider.addEventListener('mouseleave', start);
+        slider.addEventListener('focusin', stop);      // 键盘聚焦暂停
+        slider.addEventListener('focusout', start);
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) { stop(); } else { start(); }
+        });
       }
     } catch (e) {}
   });

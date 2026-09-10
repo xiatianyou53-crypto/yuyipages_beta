@@ -7,8 +7,9 @@
   {{ block "extra_head" . }}{{ end }}
 </head>
 <body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
   {{ partial "header.html" . }}
-  <main class="site-main">
+  <main class="site-main" id="main">
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
