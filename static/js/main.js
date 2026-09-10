@@ -70,44 +70,5 @@
         });
       }
     } catch (e) {}
-
-    // ===== 滚动渐显（错落入场） =====
-    try {
-      if (!prefersReduce()) {
-        var staggered = [
-          ['.home-section', 0.05],
-          ['.archive-year', 0.05],
-          ['.card', 0.06],
-          ['.headlines li', 0.07],
-          ['.list-item', 0.05]
-        ];
-        staggered.forEach(function (pair) {
-          var els = document.querySelectorAll(pair[0]);
-          for (var k = 0; k < els.length; k++) {
-            els[k].classList.add('reveal');
-            els[k].style.setProperty('--reveal-delay', (Math.min(k, 6) * pair[1]).toFixed(2) + 's');
-          }
-        });
-        ['.prose-card', '.page-head'].forEach(function (sel) {
-          var els = document.querySelectorAll(sel);
-          for (var j = 0; j < els.length; j++) { els[j].classList.add('reveal'); }
-        });
-
-        var targets = document.querySelectorAll('.reveal');
-        if ('IntersectionObserver' in window) {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                e.target.classList.add('is-in');
-                io.unobserve(e.target);
-              }
-            });
-          }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-          for (var t = 0; t < targets.length; t++) { io.observe(targets[t]); }
-        } else {
-          for (var u = 0; u < targets.length; u++) { targets[u].classList.add('is-in'); }
-        }
-      }
-    } catch (e) {}
   });
 })();

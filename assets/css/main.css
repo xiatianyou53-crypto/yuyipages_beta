@@ -43,6 +43,7 @@
 
   --container: 1120px;
   --ease: cubic-bezier(0.3, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);   /* 自然减速，用于入场 */
 }
 
 * { box-sizing: border-box; }
@@ -106,9 +107,7 @@ h1, h2, h3, h4 {
 /* ---------- 导航条（吸顶） ---------- */
 .site-nav {
   position: sticky; top: 0; z-index: 110;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  background: var(--surface);
   border-top: 1px solid var(--border-strong);
   border-bottom: 1px solid var(--border);
   padding: 8px 0;
@@ -178,6 +177,7 @@ h1, h2, h3, h4 {
 .section-title::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); }
 .section-title::after { display: none; }
 .more-link { font-size: 0.88rem; white-space: nowrap; }
+.more-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .page-head { margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .page-title { margin: 0 0 8px; font-size: clamp(1.4rem, 2.8vw, 1.9rem); font-weight: 700; color: var(--ink); }
@@ -193,10 +193,9 @@ h1, h2, h3, h4 {
 .card {
   background: var(--surface); border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-card);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
-.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
+.card:hover { border-color: var(--primary); transform: translateY(-2px); }
 .card a { color: inherit; }
 .post-card .thumb { height: 194px; overflow: hidden; background: var(--surface-3); }
 .post-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
@@ -237,6 +236,7 @@ h1, h2, h3, h4 {
 .btn-outline { border: 1px solid var(--primary); color: var(--primary); background: transparent; }
 .btn-outline:hover { background: var(--accent-soft); color: var(--primary-hover); }
 .btn-sm { margin-top: 12px; padding: 7px 16px; font-size: 0.85rem; }
+.btn:active { transform: translateY(0); }
 
 /* ---------- 关于 / 文章正文 ---------- */
 /* ---------- 关于 / 文章正文（报纸式：去卡片，用栏线与留白） ---------- */
@@ -270,7 +270,7 @@ h1, h2, h3, h4 {
 .pdf-frame-wrap { margin-top: 10px; }
 .pdf-frame {
   width: 100%; height: 74vh; min-height: 500px; border: 1px solid var(--border);
-  border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-card);
+  border-radius: var(--radius); background: #fff;
 }
 .pdf-tip { font-size: 0.84rem; color: var(--ink-faint); margin: 10px 0 0; }
 
@@ -291,10 +291,10 @@ h1, h2, h3, h4 {
   background: var(--surface-3); border: 1px solid var(--border);
 }
 .cover-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
-.cover-item a:hover .cover-thumb img { transform: scale(1.04); }
+.cover-item a:hover .cover-thumb { border-color: var(--primary); }
 .cover-caption { padding-top: 10px; }
 .cover-title { margin: 0 0 6px; font-size: 1rem; font-weight: 600; line-height: 1.45; }
-.cover-item a:hover .cover-title { color: var(--primary); }
+.cover-item a:hover .cover-title { color: var(--primary-hover); text-decoration: underline; text-underline-offset: 3px; }
 .cover-meta { margin: 0; font-size: 0.8rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 
 @media (max-width: 520px) {
@@ -353,15 +353,15 @@ h1, h2, h3, h4 {
 
 /* ---------- 首页报刊式布局（头条 + 要闻侧栏） ---------- */
 .frontpage { display: grid; grid-template-columns: 1.7fr 1fr; gap: 28px; align-items: start; }
-.lead { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease); }
-.lead:hover { transform: translateY(-4px); box-shadow: var(--shadow-card-hover); }
+.lead { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s var(--ease), transform 0.2s var(--ease); }
+.lead:hover { border-color: var(--primary); transform: translateY(-2px); }
 .lead a { color: inherit; display: block; }
 .lead-thumb { height: 320px; overflow: hidden; background: var(--surface-3); }
 .lead-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .lead-title { font-size: 1.5rem; margin: 20px 22px 8px; }
 .lead .card-meta { margin: 0 22px 8px; }
 .lead-desc { margin: 0 22px 24px; color: var(--ink-soft); }
-.headlines { list-style: none; margin: 0; padding: 6px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-card); overflow: hidden; }
+.headlines { list-style: none; margin: 0; padding: 6px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .headlines li + li { border-top: 1px solid var(--border); }
 .headlines a { display: block; padding: 18px 20px; color: inherit; transition: background 0.2s var(--ease); }
 .headlines a:hover { background: var(--accent-soft); }
@@ -373,22 +373,21 @@ h1, h2, h3, h4 {
 }
 
 
-/* ---------- 纸纹噪点（细腻印刷质感） ---------- */
-body::before {
-  content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  opacity: 0.032; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+/* ---------- 首页焦点入场（唯一一处"编排"动效） ---------- */
+@keyframes heroIn {
+  from { opacity: 0; transform: scale(1.015); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: none; }
 }
-
-/* ---------- 滚动渐显（错落入场） ---------- */
-html.js .reveal { opacity: 0; transform: translateY(18px); }
-html.js .reveal.is-in {
-  opacity: 1; transform: none;
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
-  transition-delay: var(--reveal-delay, 0s);
+@keyframes heroUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
 }
+.hero-slider { animation: heroIn 700ms var(--ease-out) both; }
+.hero-tagline h1 { animation: heroUp 600ms var(--ease-out) 80ms both; }
+.hero-tagline p { animation: heroUp 600ms var(--ease-out) 160ms both; }
+.hero-actions { animation: heroUp 600ms var(--ease-out) 240ms both; }
 @media (prefers-reduced-motion: reduce) {
-  html.js .reveal { opacity: 1; transform: none; }
+  .hero-slider, .hero-tagline h1, .hero-tagline p, .hero-actions { animation: none; }
 }
 
 /* ---------- 报刊细节：正文首字下沉 + 链接下划线 ---------- */
