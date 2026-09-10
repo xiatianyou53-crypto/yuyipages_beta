@@ -18,7 +18,7 @@
           {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $t }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
         </div>
         <div class="card-body">
-          <h3 class="card-title">{{ .Title }}</h3>
+          <h2 class="card-title">{{ .Title }}</h2>
           <p class="card-meta">{{ .Date.Format "2006年01月02日" }} · 约 {{ .ReadingTime }} 分钟</p>
           <p class="card-desc">{{ .Summary | truncate 70 }}</p>
         </div>
