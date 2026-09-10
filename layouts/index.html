@@ -3,7 +3,7 @@
 {{ $issues := (where site.RegularPages "Section" "newspaper").ByDate.Reverse }}
 {{ $latestIssue := false }}
 {{ if $issues }}{{ $latestIssue = index $issues 0 }}{{ end }}
-{{ $recentPosts := first 3 (where site.RegularPages "Section" "posts") }}
+{{ $recentPosts := first 4 (where site.RegularPages "Section" "posts") }}
 
 <!-- Hero / 轮播 -->
 <section class="hero">
@@ -56,30 +56,38 @@
   </section>
   {{ end }}
 
-  <!-- 最新文章 -->
+  <!-- 最新文章（报刊式：头条 + 要闻侧栏） -->
   <section class="home-section">
     <div class="section-head">
       <h2 class="section-title">最新文章</h2>
-      <span class="section-en">LATEST POSTS</span>
       <a class="more-link" href="/posts/">全部文章 →</a>
     </div>
-    <div class="grid posts-grid">
-      {{ range $recentPosts }}
-      {{ $t := .Title }}
-      <article class="card post-card">
-        <a href="{{ .RelPermalink }}">
-          <div class="thumb">
-            {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $t }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">{{ .Title }}</h3>
-            <p class="card-meta">{{ .Date.Format "2006年01月02日" }}</p>
-            <p class="card-desc">{{ .Summary | truncate 70 }}</p>
-          </div>
+    {{ with $recentPosts }}
+    {{ $lead := index . 0 }}
+    {{ $rest := after 1 . }}
+    <div class="frontpage">
+      <article class="lead">
+        <a href="{{ $lead.RelPermalink }}">
+          {{ with $lead.Params.cover }}<div class="lead-thumb"><img src="{{ . }}" alt="{{ $lead.Title }}" loading="lazy"></div>{{ end }}
+          <h3 class="lead-title">{{ $lead.Title }}</h3>
+          <p class="card-meta">{{ $lead.Date.Format "2006年01月02日" }} · 约 {{ $lead.ReadingTime }} 分钟</p>
+          <p class="lead-desc">{{ $lead.Summary | truncate 120 }}</p>
         </a>
       </article>
+      {{ with $rest }}
+      <ul class="headlines">
+        {{ range . }}
+        <li>
+          <a href="{{ .RelPermalink }}">
+            <h4 class="headline-title">{{ .Title }}</h4>
+            <span class="card-meta">{{ .Date.Format "2006年01月02日" }} · 约 {{ .ReadingTime }} 分钟</span>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
       {{ end }}
     </div>
+    {{ end }}
   </section>
 
 </div>
