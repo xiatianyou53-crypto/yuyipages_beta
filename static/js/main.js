@@ -109,5 +109,26 @@
         }
       }
     } catch (e) {}
+
+    // ===== 报头实时日期时间（跟随访客本机时间） =====
+    try {
+      var clock = document.querySelector('[data-live-clock]');
+      if (clock) {
+        var weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+        var renderClock = function () {
+          var d = new Date();
+          clock.textContent = d.getFullYear() + '年' + pad(d.getMonth() + 1) + '月' + pad(d.getDate()) + '日 '
+            + weekdays[d.getDay()] + ' · ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+          clock.setAttribute('datetime', d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
+            + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()));
+        };
+        renderClock();
+        setInterval(renderClock, 30000);
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden) { renderClock(); }
+        });
+      }
+    } catch (e) {}
   });
 })();

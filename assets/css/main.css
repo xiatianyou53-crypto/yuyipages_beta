@@ -111,7 +111,7 @@ h1, h2, h3, h4 {
 .brand-logo { width: 52px; height: 52px; border-radius: 4px; }
 .brand-name { font-size: clamp(1.45rem, 3.6vw, 2.2rem); font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
 .masthead-tag { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
-.masthead-date { margin: 0; color: var(--ink-faint); font-size: 0.78rem; letter-spacing: 0.16em; }
+.masthead-date { display: block; margin: 0; color: var(--ink-faint); font-size: 0.78rem; letter-spacing: 0.16em; font-variant-numeric: tabular-nums; }
 
 /* ---------- 导航条（吸顶） ---------- */
 .site-nav {
