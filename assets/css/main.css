@@ -176,7 +176,7 @@ h1, h2, h3, h4 {
 .section-en { display: none; }
 .more-link { font-size: 0.88rem; white-space: nowrap; }
 
-.page-head { margin-bottom: 24px; }
+.page-head { margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
 .page-title { position: relative; margin: 0 0 8px; padding-left: 14px; font-size: clamp(1.4rem, 2.8vw, 1.9rem); font-weight: 700; color: var(--ink); }
 .page-title::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 4px; border-radius: 2px; background: var(--accent); }
 .breadcrumb { color: var(--ink-faint); font-size: 0.87rem; margin-bottom: 18px; }
@@ -232,16 +232,23 @@ h1, h2, h3, h4 {
 .btn-sm { margin-top: 12px; padding: 7px 16px; font-size: 0.85rem; }
 
 /* ---------- 关于 / 文章正文 ---------- */
-.about-card { background: var(--surface); border-radius: var(--radius); padding: 30px; border: 1px solid var(--border); box-shadow: var(--shadow-card); }
-.about-card p { margin: 0 0 18px; font-size: 1rem; color: var(--ink-2); }
+/* ---------- 关于 / 文章正文（报纸式：去卡片，用栏线与留白） ---------- */
+.about-card {
+  background: transparent; border: 0; box-shadow: none; padding: 18px 0 20px;
+  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--border);
+}
+.about-card p { margin: 0 0 18px; font-size: 1.06rem; line-height: 1.85; color: var(--ink-2); }
 
-.prose-card { background: var(--surface); border-radius: var(--radius); padding: 40px; border: 1px solid var(--border); box-shadow: var(--shadow-card); }
-.page-cover { width: 100%; max-height: 420px; object-fit: cover; border-radius: var(--radius); margin: 12px 0 24px; }
+.prose-card {
+  background: transparent; border: 0; box-shadow: none; padding: 26px 0 0;
+  border-top: 2px solid var(--ink);
+}
+.page-cover { width: 100%; max-height: 420px; object-fit: cover; border-radius: 0; margin: 16px 0 24px; }
 
 .prose { color: var(--ink-2); font-size: 1.02rem; }
-.prose h2 { color: var(--ink); margin-top: 1.9em; font-size: 1.3rem; }
+.prose h2 { color: var(--ink); margin-top: 1.7em; font-size: 1.3rem; padding-top: 0.7em; border-top: 1px solid var(--border); }
 .prose h3 { color: var(--ink); font-size: 1.12rem; }
-.prose p { margin: 1em 0; }
+.prose p { margin: 1em 0; line-height: 1.9; }
 .prose blockquote { border-left: 4px solid var(--accent); margin: 1.3em 0; padding: 6px 20px; color: var(--ink-2); background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
 .prose ul, .prose ol { padding-left: 22px; }
 .prose li { margin: 0.3em 0; }
@@ -300,7 +307,7 @@ h1, h2, h3, h4 {
 @media (max-width: 520px) {
   body { font-size: 15px; }
   .brand-name { font-size: 1rem; }
-  .prose-card { padding: 24px; }
+  .prose-card { padding-top: 22px; }
   .page-wrap { padding: 26px 18px 52px; }
   .pdf-frame { height: 58vh; min-height: 400px; }
   .home-section { margin-top: 44px; }
