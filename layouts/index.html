@@ -38,7 +38,6 @@
   <section class="home-section">
     <div class="section-head">
       <h2 class="section-title">{{ site.Params.aboutTitle }}</h2>
-      <span class="section-en">ABOUT US</span>
     </div>
     <div class="about-card">
       <p>{{ site.Params.aboutBody | plainify }}</p>
@@ -46,15 +45,32 @@
     </div>
   </section>
 
-  <!-- 最新一期校报 -->
+  <!-- 最新一期校报（当期头版式：大封面 + 期号信息） -->
   {{ if $latestIssue }}
   <section class="home-section">
     <div class="section-head">
       <h2 class="section-title">最新一期校报</h2>
-      <span class="section-en">LATEST ISSUE</span>
       <a class="more-link" href="/newspaper/">全部校报 →</a>
     </div>
-    {{ partial "newspaper-card.html" (dict "issue" $latestIssue "featured" true) }}
+    <div class="current-issue">
+      <a class="issue-cover" href="{{ $latestIssue.RelPermalink }}">
+        {{ with $latestIssue.Params.cover }}
+        <img src="{{ . }}" alt="{{ $latestIssue.Title }} 封面" loading="lazy">
+        {{ else }}
+        <div class="cover-placeholder"><span>校园语意</span><strong>{{ $latestIssue.Title }}</strong></div>
+        {{ end }}
+      </a>
+      <div class="issue-info">
+        <p class="issue-no">第 {{ $latestIssue.Params.issue }} 期</p>
+        <h3 class="issue-title"><a href="{{ $latestIssue.RelPermalink }}">{{ $latestIssue.Title }}</a></h3>
+        <p class="issue-date">{{ $latestIssue.Date.Format "2006年01月02日" }} 出版</p>
+        {{ with $latestIssue.Params.summary }}<p class="issue-summary">{{ . }}</p>{{ end }}
+        <div class="issue-actions">
+          <a class="btn btn-primary" href="{{ $latestIssue.RelPermalink }}">在线阅读</a>
+          {{ with $latestIssue.Params.pdf }}<a class="btn btn-outline" href="{{ . }}" download>下载 PDF</a>{{ end }}
+        </div>
+      </div>
+    </div>
   </section>
   {{ end }}
 

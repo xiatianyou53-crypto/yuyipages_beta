@@ -173,7 +173,6 @@ h1, h2, h3, h4 {
 .section-title { position: relative; margin: 0; padding-left: 16px; font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 700; color: var(--ink); }
 .section-title::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); }
 .section-title::after { display: none; }
-.section-en { display: none; }
 .more-link { font-size: 0.88rem; white-space: nowrap; }
 
 .page-head { margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
@@ -187,7 +186,6 @@ h1, h2, h3, h4 {
 /* ---------- 卡片 ---------- */
 .grid { display: grid; gap: 24px; }
 .posts-grid { grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); }
-.issues-grid { grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
 
 .card {
   background: var(--surface); border-radius: var(--radius); overflow: hidden;
@@ -205,10 +203,17 @@ h1, h2, h3, h4 {
 .card-meta { margin: 0 0 8px; color: var(--ink-faint); font-size: 0.82rem; }
 .card-desc { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
 
-/* ---------- 校报卡片（杂志封面感） ---------- */
-.newspaper-card .newspaper-link { display: block; }
-.newspaper-cover { height: 284px; overflow: hidden; position: relative; background: var(--surface-3); }
-.newspaper-cover img { width: 100%; height: 100%; object-fit: cover; }
+/* ---------- 当期头版（首页「最新一期校报」，去卡片） ---------- */
+.current-issue { display: grid; grid-template-columns: 300px 1fr; gap: 32px; align-items: start; padding-top: 24px; border-top: 1px solid var(--border); }
+.issue-cover { display: block; aspect-ratio: 3 / 4; overflow: hidden; background: var(--surface-3); border: 1px solid var(--border); }
+.issue-cover img { width: 100%; height: 100%; object-fit: cover; }
+.issue-no { margin: 0 0 10px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.18em; color: var(--primary); font-variant-numeric: tabular-nums; }
+.issue-title { margin: 0 0 8px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 700; line-height: 1.35; }
+.issue-title a { color: inherit; }
+.issue-title a:hover { color: var(--primary); }
+.issue-date { margin: 0 0 16px; font-size: 0.85rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+/* ---------- 封面占位（无封面时） ---------- */
 .cover-placeholder {
   height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
   color: #fff; background: linear-gradient(150deg, var(--primary), var(--accent));
@@ -216,7 +221,6 @@ h1, h2, h3, h4 {
 }
 .cover-placeholder span { font-size: 0.78rem; letter-spacing: 0.3em; opacity: 0.9; }
 .cover-placeholder strong { font-size: 1.25rem; font-weight: 600; }
-.newspaper-featured { max-width: 560px; margin: 0 auto; }
 
 /* ---------- 按钮 ---------- */
 .btn {
@@ -390,4 +394,10 @@ html.js .reveal.is-in {
   font-weight: 700; color: var(--primary); padding: 0.05em 0.1em 0 0;
 }
 .prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+
+@media (max-width: 720px) {
+  .current-issue { grid-template-columns: 1fr; gap: 20px; }
+  .issue-cover { max-width: 260px; }
+}
 
