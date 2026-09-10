@@ -1,0 +1,67 @@
+# =============================================================
+# 辽宁省实验中学校园语意报社 —— Hugo 站点配置
+# 说明：把 baseURL 替换成你最终绑定的域名（部署后再替换）
+# =============================================================
+baseURL: 'https://your-project.pages.dev/'
+locale: 'zh-cn'
+defaultContentLanguage: 'zh-cn'
+title: '辽宁省实验中学校园语意报社'
+
+# 输出格式：页面为 HTML，另外自动生成 sitemap 和 robots.txt
+enableRobotsTXT: true
+enableEmoji: true
+# 中文内容自动摘要截断（默认 "— 阅读更多 →"）
+summaryLength: 60
+
+# 分页：每页 10 条
+pagination:
+  pagerSize: 10
+
+# 菜单
+menu:
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+    - identifier: newspaper
+      name: 校报归档
+      url: /newspaper/
+      weight: 2
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 3
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 4
+
+params:
+  author: '辽宁省实验中学校园语意报社'
+  description: '辽宁省实验中学校园语意报社官方网站 —— 校园新闻、校园文化报道，以及历届校报的在线阅读与下载。'
+  # 首页顶部标语（hero）
+  heroTitle: '用心记录，向世界发声'
+  heroSubtitle: '辽宁省实验中学校园语意报社 · 每一期报纸，都是我们与校园的对话'
+  # 社团简介（首页"关于我们"区块）
+  aboutTitle: '关于校园语意报社'
+  aboutBody: >
+    校园语意报社是辽宁省实验中学的校级学生社团。我们用文字与镜头记录校园里的每一个人、每一件事：
+    从课堂内外的点滴，到运动会与艺术节的高光时刻；从学长学姐的备考经验，到老师们的谆谆教诲。
+    我们相信，校园里最平凡的故事，也值得被郑重地书写与珍藏。欢迎热爱写作、摄影与编辑的你加入我们。
+  # 首页轮播图（校园风格大图；后续可在后台或本配置中更换）
+  carousel:
+    - image: '/images/slides/campus-1.svg'
+      caption: '晨光中的教学楼'
+    - image: '/images/slides/campus-2.svg'
+      caption: '操场上的少年'
+    - image: '/images/slides/campus-3.svg'
+      caption: '图书馆一角'
+
+# 日期格式
+frontmatter:
+  date: ['date', 'publishDate', 'lastmod']
+
+# 不启用默认的分类/标签（避免生成空页面）
+taxonomies: {}
+

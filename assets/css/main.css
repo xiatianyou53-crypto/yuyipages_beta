@@ -13,8 +13,8 @@
 
   --ink: #31475e;            /* 标题/正文主色（青灰深蓝） */
   --ink-2: #3f5568;
-  --ink-soft: #6b7c8c;
-  --ink-faint: #95a3b0;
+  --ink-soft: #56687a;       /* 次级文字（对比度已达 AA） */
+  --ink-faint: #6b7885;      /* 辅助文字（原来过浅，已加深） */
 
   --bg: #f8f8f8;
   --surface: #ffffff;
@@ -24,15 +24,22 @@
   --border-strong: #d0d0d0;
 
   --radius-lg: 15px;
-  --radius: 12px;
-  --radius-sm: 5px;
+  --radius: 12px;            /* 容器/卡片 */
+  --radius-sm: 6px;          /* 控件（按钮/输入）统一圆角 */
   --radius-pill: 20px;
 
-  --shadow-header: 0 4px 12px 0 hsla(0, 0%, 60%, 0.1);
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  /* 统一光源：自上而下；阴影带青灰色相，而非纯黑 */
+  --shadow-header: 0 4px 12px 0 rgba(49, 71, 94, 0.1);
+  --shadow-card: 0 4px 12px rgba(49, 71, 94, 0.08);
+  --shadow-card-hover: 0 8px 24px rgba(49, 71, 94, 0.14);
   --shadow-btn: 0 4px 12px rgba(31, 175, 136, 0.3);
   --shadow-btn-hover: 0 6px 16px rgba(31, 175, 136, 0.4);
+
+  /* 字体：标题用中文衬线（报刊感），正文无衬线 */
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
+  --font-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun",
+    "STSong", Georgia, serif;
 
   --container: 1120px;
   --ease: cubic-bezier(0.3, 0, 0.2, 1);
@@ -44,8 +51,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
-    "Noto Sans CJK SC", "Source Han Sans SC", Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 15.5px;
   color: var(--ink);
   background: var(--bg);
@@ -56,7 +62,15 @@ body {
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--primary); text-decoration: none; transition: color 0.2s var(--ease); }
 a:hover { color: var(--accent); }
-h1, h2, h3, h4 { line-height: 1.35; font-weight: 600; color: var(--ink); }
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  line-height: 1.35; font-weight: 600; color: var(--ink);
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+/* 报刊感的衬线应用面 + 数字等宽对齐 */
+.brand-name, .footer-title, .cover-placeholder strong { font-family: var(--font-serif); }
+.card-meta, .pagination, .issue-summary { font-variant-numeric: tabular-nums; }
 
 ::selection { background: var(--accent-soft); }
 
@@ -191,7 +205,7 @@ h1, h2, h3, h4 { line-height: 1.35; font-weight: 600; color: var(--ink); }
 }
 .btn-primary { background: var(--primary); color: #fff; border: 0; box-shadow: var(--shadow-btn); }
 .btn-primary:hover { background: var(--primary-2); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-btn-hover); }
-.btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; border-radius: var(--radius-pill); }
+.btn-outline { border: 2px solid var(--accent); color: var(--accent); background: transparent; }
 .btn-outline:hover { background: var(--accent-soft); color: var(--primary); }
 .btn-sm { margin-top: 12px; padding: 7px 16px; font-size: 0.85rem; }
 
@@ -231,7 +245,7 @@ h1, h2, h3, h4 { line-height: 1.35; font-weight: 600; color: var(--ink); }
 
 /* ---------- 分页 ---------- */
 .pagination { display: flex; gap: 14px; align-items: center; justify-content: center; margin-top: 40px; color: var(--ink-soft); font-size: 0.9rem; }
-.pagination a { color: var(--primary); font-weight: 600; padding: 7px 16px; border-radius: var(--radius-pill); background: var(--accent-soft); }
+.pagination a { color: var(--primary); font-weight: 600; padding: 7px 16px; border-radius: var(--radius-sm); background: var(--accent-soft); }
 .pagination a:hover { background: #d7efe6; }
 
 /* ---------- 页脚 ---------- */

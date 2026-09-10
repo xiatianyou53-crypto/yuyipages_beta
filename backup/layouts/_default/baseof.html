@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "zh-cn" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ partial "head.html" . }}
+  {{ block "extra_head" . }}{{ end }}
+</head>
+<body>
+  {{ partial "header.html" . }}
+  <main class="site-main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script src="{{ "js/main.js" | relURL }}" defer></script>
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>

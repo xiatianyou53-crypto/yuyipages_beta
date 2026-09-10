@@ -1,0 +1,85 @@
+# ==========================================================================
+# Decap CMS 后台配置
+# 界面入口：/admin/
+#
+# 【重要】身份认证方案（两者选其一，见 README）：
+#   A. Cloudflare Pages（推荐）+ OAuth 代理 Worker —— backend 使用 github：
+#       1) 创建一个 GitHub OAuth App（Homepage 填你的站点，Callback 填 OAuth Worker 的 /callback）
+#       2) 部署仓库内 oauth-worker/ 到 Cloudflare Workers，得到 worker 域名，例如 oauth.example.workers.dev
+#       3) 用 Cloudflare Access 保护 /admin/*（可选，作为第二道登录门槛）
+#       4) 把下面 repo 换成 owner/repo，并把 base_url 换成你的 Worker 域名
+#   B. 最简方案（愿意用 Netlify 托管后台登录时）：改用 git-gateway 后端，见文件末尾注释块。
+# ==========================================================================
+# 身份认证：方案 A —— Cloudflare + GitHub（Decap 兼容握手协议的 OAuth Worker）。
+# Worker 代码见 oauth-worker/src/index.js（须部署到 Worker 域名 base_url 处）。
+backend:
+  name: github
+  repo: your-username/your-repo
+  branch: main
+  base_url: https://your-oauth.your-subdomain.workers.dev
+  auth_endpoint: auth
+  site_domain: your-project.pages.dev
+
+# 上传的媒体文件（PDF、图片）存放与对外路径
+media_folder: static/uploads
+public_folder: /uploads
+# media_library:
+#   name: ''            # 使用默认（无外部云存储）；如需大文件云存储见 README R2 说明
+
+locale: 'zh_Hans'                  # 后台界面中文
+
+# 站点 URL（Cloudflare Pages 部署域名）
+site_url: https://your-project.pages.dev/
+
+# 发布方式：不设置 publish_mode 即为“直接发布”到 main（适合 Cloudflare 静态环境）。
+# 如需“草稿-审核”流程，改 netlify 方案并设置 publish_mode: editorial_workflow。
+
+collections:
+  # ---------- 校报 ----------
+  - name: newspaper
+    label: '校报'
+    label_singular: '校报'
+    folder: content/newspaper
+    create: true
+    identifier_field: title
+    summary: '第 {{issue}} 期 · {{date | date("YYYY年MM月DD日")}}'
+    fields:
+      - { label: '标题（期名）', name: title, widget: string, hint: '如：金秋特辑' }
+      - { label: '期数', name: issue, widget: number, value_type: int, min: 1, hint: '如：58' }
+      - label: '出版日期'
+        name: date
+        widget: datetime
+      - label: 'PDF 文件'
+        name: pdf
+        widget: file
+        hint: '拖拽或点击上传本期 PDF；单文件建议小于 10MB。超大文件可考虑 Cloudflare R2（见 README）'
+      - { label: '封面图（可选）', name: cover, widget: image, required: false, hint: '未上传时前端会显示默认封面' }
+      - { label: '本期简介', name: summary, widget: text, required: false }
+  # ---------- 文章 ----------
+  - name: posts
+    label: '文章'
+    label_singular: '文章'
+    folder: content/posts
+    create: true
+    identifier_field: title
+    summary: '{{title}}'
+    fields:
+      - { label: '标题', name: title, widget: string }
+      - label: '发布日期'
+        name: date
+        widget: datetime
+      - { label: '正文', name: body, widget: markdown }
+      - { label: '封面图（可选）', name: cover, widget: image, required: false }
+
+
+# ==========================================================================
+# 方案 B 备选：如果你改用 Netlify（最省事，含登录与 git 提交）
+# 则把上面 backend 整段替换为下面内容（并删除 github 字段、可开启 editorial_workflow）：
+#
+# backend:
+#   name: git-gateway
+#   branch: main
+# publish_mode: editorial_workflow
+#
+# 然后在 Netlify 后台 Identity → 开启；注册账号并“邀请用户”。
+# ==========================================================================

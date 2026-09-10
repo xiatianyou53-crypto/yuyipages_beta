@@ -11,11 +11,10 @@
   {{ if $pages }}
   <div class="grid posts-grid">
     {{ range (.Paginate $pages).Pages }}
-    {{ $t := .Title }}
     <article class="card post-card">
       <a href="{{ .RelPermalink }}">
         <div class="thumb">
-          {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $t }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
+          {{ with .Params.cover }}<img src="{{ . }}" alt="{{ $.Title }}" loading="lazy">{{ else }}<div class="thumb-empty">✎</div>{{ end }}
         </div>
         <div class="card-body">
           <h3 class="card-title">{{ .Title }}</h3>

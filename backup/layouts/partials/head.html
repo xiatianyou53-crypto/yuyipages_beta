@@ -1,0 +1,17 @@
+{{- $css := resources.Get "css/main.css" -}}
+{{- if $css }}{{ $css = $css | minify | fingerprint }}{{ end -}}
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+{{- $desc := .Params.description | default site.Params.description }}
+<meta name="description" content="{{ $desc | truncate 160 }}">
+<meta name="generator" content="Hugo">
+{{- if $css }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+{{- end }}
+<link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc | truncate 160 }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary">

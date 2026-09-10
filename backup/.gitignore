@@ -1,0 +1,18 @@
+# Hugo 构建产物
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*.log
+
+# Node 依赖（如需扩展）
+node_modules/
+
+# 环境 / 密钥（切勿提交真实 OAuth 密钥）
+.env
+wrangler.toml.local

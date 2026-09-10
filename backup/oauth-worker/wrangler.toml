@@ -1,0 +1,9 @@
+name = "your-cms-oauth"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# ---- 部署 OAuth Worker 的配置（Client Secret 勿写此处，用 wrangler secret 或网页机密设置）----
+[vars]
+GITHUB_CLIENT_ID = "your_github_oauth_client_id"
+# 仓库为公开用 public_repo；若 your-repo 是私有仓库，请改为 repo
+GITHUB_SCOPE = "repo"
