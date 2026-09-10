@@ -401,3 +401,49 @@ html.js .reveal.is-in {
   .issue-cover { max-width: 260px; }
 }
 
+
+/* ==========================================================================
+   深色模式（跟随系统 prefers-color-scheme）
+   墨色底（非纯黑）+ 提亮的绿，保持报刊质感
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #3fbf85;
+    --primary-2: #35a874;
+    --primary-hover: #57d29b;
+    --accent: #4cc38a;
+    --accent-soft: rgba(76, 195, 138, 0.14);
+
+    --ink: #e7ebee;
+    --ink-2: #cfd6db;
+    --ink-soft: #a7b2bb;
+    --ink-faint: #8b969f;
+
+    --bg: #12161a;
+    --surface: #171c21;
+    --surface-2: #1b2127;
+    --surface-3: #1f262c;
+    --border: #2a3238;
+    --border-strong: #38424a;
+
+    --shadow-header: 0 4px 12px 0 rgba(0, 0, 0, 0.5);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.45);
+    --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-btn: 0 4px 12px rgba(76, 195, 138, 0.22);
+    --shadow-btn-hover: 0 6px 16px rgba(76, 195, 138, 0.3);
+  }
+
+  body::before { mix-blend-mode: screen; opacity: 0.025; }
+
+  .site-header { background: var(--bg); }
+  .masthead { background: transparent; }
+  .site-nav { background: rgba(18, 22, 26, 0.92); }
+  .main-nav { background: var(--surface); }
+  .hero-slider { background: var(--surface-3); }
+  .slide-btn { background: rgba(23, 28, 33, 0.85); color: var(--ink); }
+  .slide-btn:hover { background: rgba(31, 38, 44, 0.95); }
+  .prose pre { background: #0d1114; color: #dbe4ea; }
+  ::-webkit-scrollbar-thumb { background: #3a444c; border-color: var(--bg); }
+  ::-webkit-scrollbar-thumb:hover { background: #4a555e; }
+}
+
