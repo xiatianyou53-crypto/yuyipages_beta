@@ -109,39 +109,5 @@
         }
       }
     } catch (e) {}
-
-    // ===== 配色模式开关（浅色 / 深色，记忆选择；未选择时跟随系统） =====
-    try {
-      var root = document.documentElement;
-      var themeBtns = document.querySelectorAll('.theme-btn');
-      function markTheme(t) {
-        for (var i = 0; i < themeBtns.length; i++) {
-          themeBtns[i].classList.toggle('is-active', themeBtns[i].getAttribute('data-theme-set') === t);
-        }
-      }
-      markTheme(root.getAttribute('data-theme') || 'light');
-      for (var b = 0; b < themeBtns.length; b++) {
-        themeBtns[b].addEventListener('click', function () {
-          var t = this.getAttribute('data-theme-set');
-          root.setAttribute('data-theme', t);
-          try { localStorage.setItem('theme', t); } catch (e) {}
-          markTheme(t);
-        });
-      }
-      if (window.matchMedia) {
-        var mq = window.matchMedia('(prefers-color-scheme: dark)');
-        var onSysChange = function (ev) {
-          var stored = null;
-          try { stored = localStorage.getItem('theme'); } catch (e) {}
-          if (stored !== 'dark' && stored !== 'light') {
-            var t = ev.matches ? 'dark' : 'light';
-            root.setAttribute('data-theme', t);
-            markTheme(t);
-          }
-        };
-        if (mq.addEventListener) { mq.addEventListener('change', onSysChange); }
-        else if (mq.addListener) { mq.addListener(onSysChange); }
-      }
-    } catch (e) {}
   });
 })();
