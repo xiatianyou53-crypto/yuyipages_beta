@@ -11,12 +11,30 @@
   {{ else }}
     {{ range $issues.GroupByDate "2006" }}
     <section class="archive-year">
-      <h2 class="year-title">{{ .Key }} 年</h2>
-      <div class="grid issues-grid">
-        {{ range .Pages }}
-          {{ partial "newspaper-card.html" (dict "issue" . "featured" false) }}
-        {{ end }}
+      <div class="archive-year-head">
+        <h2 class="year-title">{{ .Key }} 年</h2>
+        <span class="year-count">{{ len .Pages }} 期</span>
       </div>
+      <ul class="cover-wall">
+        {{ range .Pages }}
+        {{ $t := .Title }}
+        <li class="cover-item">
+          <a href="{{ .RelPermalink }}">
+            <div class="cover-thumb">
+              {{ with .Params.cover }}
+              <img src="{{ . }}" alt="{{ $t }} 封面" loading="lazy">
+              {{ else }}
+              <div class="cover-placeholder"><span>校园语意</span><strong>{{ $t }}</strong></div>
+              {{ end }}
+            </div>
+            <div class="cover-caption">
+              <h3 class="cover-title">{{ .Title }}</h3>
+              <p class="cover-meta">第 {{ .Params.issue }} 期 · {{ .Date.Format "2006年01月02日" }}</p>
+            </div>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
     </section>
     {{ end }}
   {{ end }}

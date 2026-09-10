@@ -267,10 +267,32 @@ h1, h2, h3, h4 {
 }
 .pdf-tip { font-size: 0.84rem; color: var(--ink-faint); margin: 10px 0 0; }
 
-/* ---------- 年份分组 ---------- */
-.archive-year { margin-bottom: 40px; }
-.year-title { position: relative; margin: 0 0 18px; padding-left: 14px; color: var(--ink); font-size: 1.2rem; font-weight: 600; }
-.year-title::before { content: ""; position: absolute; left: 0; top: 5px; bottom: 5px; width: 4px; border-radius: 2px; background: var(--accent); }
+/* ---------- 校报归档：封面墙 + 期号索引 ---------- */
+.archive-year { margin-bottom: 52px; }
+.archive-year-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 22px;
+}
+.year-title { position: relative; margin: 0; padding-left: 16px; color: var(--ink); font-size: 1.3rem; font-weight: 700; }
+.year-title::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); }
+.year-count { font-size: 0.82rem; color: var(--ink-faint); letter-spacing: 0.12em; }
+
+.cover-wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: 28px 22px; }
+.cover-item a { display: block; color: inherit; }
+.cover-thumb {
+  position: relative; aspect-ratio: 3 / 4; overflow: hidden;
+  background: var(--surface-3); border: 1px solid var(--border);
+}
+.cover-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+.cover-item a:hover .cover-thumb img { transform: scale(1.04); }
+.cover-caption { padding-top: 10px; }
+.cover-title { margin: 0 0 6px; font-size: 1rem; font-weight: 600; line-height: 1.45; }
+.cover-item a:hover .cover-title { color: var(--primary); }
+.cover-meta { margin: 0; font-size: 0.8rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 520px) {
+  .cover-wall { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 22px 16px; }
+}
 
 /* ---------- 分页 ---------- */
 .pagination { display: flex; gap: 14px; align-items: center; justify-content: center; margin-top: 40px; color: var(--ink-soft); font-size: 0.9rem; }
