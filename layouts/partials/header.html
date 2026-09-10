@@ -1,18 +1,26 @@
 <header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="/">
-      <img class="brand-logo" src="/images/logo.svg" alt="{{ site.Title }} 标志" width="40" height="40">
-      <span class="brand-name">{{ site.Title }}</span>
-    </a>
-    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="main-nav" id="mainNav" aria-label="主导航">
-      <ul class="nav-list">
-        {{- range site.Menus.main }}
-        <li class="nav-item"><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
-        {{- end }}
-      </ul>
-    </nav>
+  <div class="masthead">
+    <div class="container masthead-inner">
+      <a class="brand" href="/">
+        <img class="brand-logo" src="/images/logo.svg" alt="{{ site.Title }} 标志" width="52" height="52">
+        <span class="brand-name">{{ site.Title }}</span>
+      </a>
+      <p class="masthead-tag">{{ site.Params.heroSubtitle }}</p>
+      <p class="masthead-date">{{ now.Format "2006年01月02日" }}</p>
+    </div>
+  </div>
+  <div class="site-nav">
+    <div class="container nav-inner">
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-controls="mainNav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="main-nav" id="mainNav" aria-label="主导航">
+        <ul class="nav-list">
+          {{- range site.Menus.main }}
+          <li class="nav-item"><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+          {{- end }}
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>

@@ -91,26 +91,36 @@ h1, h2, h3, h4 {
 .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .container.narrow { max-width: 800px; }
 
-/* ---------- 报头（白底固定，顶部绿色报眉） ---------- */
-.site-header {
-  position: sticky; top: 0; z-index: 100;
-  background: #fff; border-top: 3px solid var(--primary);
-  box-shadow: var(--shadow-header);
-}
-.header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
-.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); }
+/* ---------- 报头 Masthead（居中刊名 + 双线分隔） ---------- */
+.site-header { position: relative; z-index: 100; background: #fff; }
+.masthead { padding: 32px 0 20px; text-align: center; border-bottom: 3px double var(--ink); }
+.masthead-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.brand { display: inline-flex; align-items: center; gap: 14px; color: var(--ink); }
 .brand:hover { color: var(--primary); }
-.brand-logo { width: 36px; height: 36px; border-radius: 8px; }
-.brand-name { font-size: 1.06rem; font-weight: 700; letter-spacing: 0.5px; white-space: nowrap; }
+.brand-logo { width: 52px; height: 52px; border-radius: 10px; }
+.brand-name { font-size: clamp(1.45rem, 3.6vw, 2.2rem); font-weight: 700; letter-spacing: 0.05em; white-space: nowrap; }
+.masthead-tag { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+.masthead-date { margin: 0; color: var(--ink-faint); font-size: 0.78rem; letter-spacing: 0.16em; }
 
-.nav-list { display: flex; align-items: center; gap: 8px; list-style: none; margin: 0; padding: 0; }
+/* ---------- 导航条（吸顶） ---------- */
+.site-nav {
+  position: sticky; top: 0; z-index: 110;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-top: 3px solid var(--primary);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner { position: relative; display: flex; align-items: center; justify-content: center; min-height: 52px; }
+
+.nav-list { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
 .nav-item a {
-  display: inline-block; padding: 8px 14px 10px; font-size: 0.94rem;
-  color: var(--ink); letter-spacing: 0.22px;
+  display: inline-block; padding: 14px 18px; font-size: 0.95rem; font-weight: 500;
+  color: var(--ink); letter-spacing: 0.08em;
   border-bottom: 3px solid transparent; transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
 }
 .nav-item a:hover { color: var(--primary); border-bottom-color: var(--accent); }
-.nav-item a.active { color: var(--primary); font-weight: 600; border-bottom-color: var(--primary); }
+.nav-item a.active { color: var(--primary); font-weight: 700; border-bottom-color: var(--primary); }
 
 .nav-toggle {
   display: none; border: 0; background: transparent; cursor: pointer;
@@ -131,11 +141,18 @@ h1, h2, h3, h4 {
 .slide.is-active { opacity: 1; }
 .slide img { width: 100%; height: 100%; object-fit: cover; }
 .slide-caption {
-  position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 24px 20px;
-  color: #fff; text-align: center; font-size: 0.98rem;
-  background: linear-gradient(transparent, rgba(49, 71, 94, 0.6));
+  position: absolute; left: 28px; right: 28px; bottom: 26px; padding: 0;
+  color: #fff; text-align: left;
 }
-.slide-caption h2 { margin: 0; font-size: 1.05rem; font-weight: 600; color: #fff; }
+.cap-label {
+  display: inline-block; background: var(--primary); color: #fff;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.26em;
+  padding: 5px 12px; border-radius: var(--radius-sm);
+}
+.slide-caption h2 {
+  margin: 12px 0 0; font-size: clamp(1.2rem, 2.6vw, 1.75rem); font-weight: 700; color: #fff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
 
 .slide-btn {
   position: absolute; top: 50%; transform: translateY(-50%);
@@ -154,14 +171,15 @@ h1, h2, h3, h4 {
 .hero-tagline h1 { margin: 0 0 10px; font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; color: var(--ink); }
 .hero-tagline p { margin: 0 auto; max-width: 720px; color: var(--ink-soft); font-size: 1rem; }
 
-/* ---------- 栏目标题（杂志式居中大标题 + 绿色短线） ---------- */
+/* ---------- 栏目标题（报刊式：粗底线 + 方形标记） ---------- */
 .page-wrap { padding: 34px 24px 68px; }
-.home-section { margin-top: 60px; }
-.section-head { position: relative; text-align: center; margin-bottom: 26px; }
-.section-title { position: relative; display: inline-block; margin: 0; padding-bottom: 12px; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; color: var(--ink); }
-.section-title::after { content: ""; position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 40px; height: 3px; border-radius: 2px; background: var(--accent); }
+.home-section { margin-top: 56px; }
+.section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+.section-title { position: relative; margin: 0; padding-left: 16px; font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 700; color: var(--ink); }
+.section-title::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); }
+.section-title::after { display: none; }
 .section-en { display: none; }
-.more-link { position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+.more-link { font-size: 0.88rem; white-space: nowrap; }
 
 .page-head { margin-bottom: 24px; }
 .page-title { position: relative; margin: 0 0 8px; padding-left: 14px; font-size: clamp(1.4rem, 2.8vw, 1.9rem); font-weight: 700; color: var(--ink); }
@@ -178,7 +196,8 @@ h1, h2, h3, h4 {
 
 .card {
   background: var(--surface); border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--border); box-shadow: var(--shadow-card);
+  border: 1px solid var(--border); border-top: 3px solid var(--primary);
+  box-shadow: var(--shadow-card);
   transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card-hover); }
@@ -195,6 +214,12 @@ h1, h2, h3, h4 {
 .newspaper-card .newspaper-link { display: block; }
 .newspaper-cover { height: 284px; overflow: hidden; position: relative; background: var(--surface-3); }
 .newspaper-cover img { width: 100%; height: 100%; object-fit: cover; }
+.issue-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  background: var(--primary); color: #fff; font-size: 0.76rem; font-weight: 600;
+  letter-spacing: 0.1em; padding: 5px 12px; border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+}
 .cover-placeholder {
   height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
   color: #fff; background: linear-gradient(150deg, var(--primary), var(--accent));
@@ -266,22 +291,20 @@ h1, h2, h3, h4 {
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 860px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle { display: flex; position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
   .main-nav {
-    position: absolute; top: 70px; left: 0; right: 0; display: none;
-    background: #fff; border-bottom: 1px solid var(--border);
-    padding: 10px 20px 16px; box-shadow: var(--shadow-header);
+    position: absolute; top: 100%; left: 0; right: 0; display: none;
+    background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 8px 16px 14px; box-shadow: var(--shadow-header);
   }
   .main-nav.is-open { display: block; }
   .nav-list { flex-direction: column; align-items: stretch; }
   .nav-item a { display: block; padding: 12px 14px; border-bottom: 0; border-left: 3px solid transparent; }
   .nav-item a.active { border-left-color: var(--primary); background: var(--accent-soft); }
+  .masthead { padding: 22px 16px 16px; }
+  .brand-logo { width: 42px; height: 42px; }
   .hero-slider { height: 290px; margin: 0 16px; }
   .hero-tagline { padding: 30px 20px 4px; }
-  .section-head { text-align: left; }
-  .section-title { padding-left: 14px; }
-  .section-title::after { left: 14px; transform: none; width: 34px; }
-  .more-link { position: static; transform: none; display: inline-block; margin-top: 6px; }
   .card:hover { transform: none; }
 }
 

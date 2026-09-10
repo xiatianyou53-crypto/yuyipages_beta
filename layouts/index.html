@@ -12,7 +12,10 @@
     {{ range $i, $s := $slides }}
     <div class="slide{{ if eq $i 0 }} is-active{{ end }}">
       <img src="{{ $s.image }}" alt="{{ $s.caption }}">
-      <div class="slide-caption"><h2>{{ $s.caption }}</h2></div>
+      <div class="slide-caption">
+        <span class="cap-label">校园影像</span>
+        <h2>{{ $s.caption }}</h2>
+      </div>
     </div>
     {{ end }}
     <button class="slide-btn prev" data-step="-1" aria-label="上一张">‹</button>
