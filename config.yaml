@@ -1,11 +1,11 @@
 # =============================================================
-# 辽宁省实验中学校园语意报社 —— Hugo 站点配置
+# 辽宁省实验中学语意报社 —— Hugo 站点配置
 # 说明：把 baseURL 替换成你最终绑定的域名（部署后再替换）
 # =============================================================
 baseURL: 'https://yuyipages-beta.pages.dev/'
 locale: 'zh-cn'
 defaultContentLanguage: 'zh-cn'
-title: '辽宁省实验中学校园语意报社'
+title: '辽宁省实验中学语意报社'
 
 # 输出格式：页面为 HTML，另外自动生成 sitemap 和 robots.txt
 enableRobotsTXT: true
@@ -38,11 +38,11 @@ menu:
       weight: 4
 
 params:
-  author: '辽宁省实验中学校园语意报社'
-  description: '辽宁省实验中学校园语意报社官方网站：发布校园新闻与文化报道，并提供历届校报在线阅读与下载。'
+  author: '辽宁省实验中学语意报社'
+  description: '辽宁省实验中学语意报社官方网站：发布校园新闻与文化报道，并提供历届校报在线阅读与下载。'
   # 首页顶部标语（hero）
-  heroTitle: '用心记录，向世界发声'
-  heroSubtitle: '辽宁省实验中学校园语意报社 · 每一期报纸，都是我们与校园的对话'
+  heroTitle: '言吾心音'
+  heroSubtitle: '辽宁省实验中学语意报社 · 每一期报纸，都是我们与校园的对话'
   # 社交分享默认缩略图（og:image）；页面有 cover 时优先用 cover
   ogImage: '/images/cover-sample.svg'
   # 社团简介（首页"关于我们"区块）
