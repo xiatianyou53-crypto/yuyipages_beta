@@ -252,7 +252,7 @@ h1, h2, h3, h4 {
 /* ---------- 关于 / 文章正文（报纸式：去卡片，用栏线与留白） ---------- */
 .about-card {
   background: transparent; border: 0; box-shadow: none; padding: var(--sp-4) 0 var(--sp-5);
-  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 .about-card p { margin: 0 0 var(--sp-4); font-size: 1.06rem; line-height: 1.85; color: var(--ink-2); }
 
