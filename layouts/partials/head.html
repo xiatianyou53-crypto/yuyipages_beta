@@ -8,7 +8,7 @@
 {{- if $css }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 {{- end }}
-<link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="{{ .Permalink }}">
 {{- $ogImage := .Params.cover | default site.Params.ogImage }}
 {{- $ogType := cond (eq .Section "posts") "article" "website" }}
