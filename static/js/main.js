@@ -1,4 +1,4 @@
-/* 语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏） */
+/* 语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏 / Logo题头动画） */
 (function () {
   function onReady(fn) {
     if (document.readyState === 'loading') {
@@ -106,6 +106,27 @@
           for (var t = 0; t < targets.length; t++) { io.observe(targets[t]); }
         } else {
           for (var u = 0; u < targets.length; u++) { targets[u].classList.add('is-in'); }
+        }
+      }
+    } catch (e) {}
+
+    // ===== Logo 超大题头动画：鼠标移动/离开/滚动时缩小 =====
+    try {
+      var brandLogo = document.querySelector('.brand-logo');
+      if (brandLogo && !prefersReduce()) {
+        var logoShrunk = false;
+        function shrinkLogo() {
+          if (logoShrunk) return;
+          logoShrunk = true;
+          brandLogo.classList.add('is-shrunk');
+        }
+        setTimeout(shrinkLogo, 3000);
+        ['mousemove', 'scroll', 'touchmove'].forEach(function (evt) {
+          document.addEventListener(evt, shrinkLogo, { once: true });
+        });
+        var brand = document.querySelector('.brand');
+        if (brand) {
+          brand.addEventListener('mouseleave', shrinkLogo, { once: true });
         }
       }
     } catch (e) {}
