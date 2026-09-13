@@ -110,24 +110,25 @@
       }
     } catch (e) {}
 
-    // ===== Logo 超大题头动画：鼠标移动/离开/滚动时缩小 =====
+    // ===== 开场动画：Logo 灵动缩放 → 消失 → 背景从中心散去 =====
     try {
-      var brandLogo = document.querySelector('.brand-logo');
-      if (brandLogo && !prefersReduce()) {
-        var logoShrunk = false;
-        function shrinkLogo() {
-          if (logoShrunk) return;
-          logoShrunk = true;
-          brandLogo.classList.add('is-shrunk');
-        }
-        setTimeout(shrinkLogo, 3000);
-        ['mousemove', 'scroll', 'touchmove'].forEach(function (evt) {
-          document.addEventListener(evt, shrinkLogo, { once: true });
+      var splash = document.getElementById('splash');
+      if (splash && !prefersReduce()) {
+        splash.addEventListener('animationend', function (e) {
+          if (e.target === splash) {
+            splash.remove();
+          }
         });
-        var brand = document.querySelector('.brand');
-        if (brand) {
-          brand.addEventListener('mouseleave', shrinkLogo, { once: true });
-        }
+        // 动画完成后移除（兼容不支持 animationend 的情况）
+        setTimeout(function () {
+          if (splash.parentNode) splash.classList.add('is-done');
+        }, 2200);
+        // 兜底：3.5s 后强制移除
+        setTimeout(function () {
+          if (splash.parentNode) splash.remove();
+        }, 3500);
+      } else if (splash) {
+        splash.remove();
       }
     } catch (e) {}
 

@@ -8,6 +8,9 @@
   {{ block "extra_head" . }}{{ end }}
 </head>
 <body>
+  <div id="splash" class="splash-screen" aria-hidden="true">
+    <img class="splash-logo" src="/images/favicon.svg" alt="语意报社">
+  </div>
   <a class="skip-link" href="#main">跳到主要内容</a>
   {{ partial "header.html" . }}
   <main class="site-main" id="main">
