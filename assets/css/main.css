@@ -434,15 +434,12 @@ html.js .reveal.is-in {
 }
 .splash-logo {
   width: 160px; height: 160px;
-  animation: splashPulse 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: splashPulse 1.2s ease-in-out forwards;
 }
 @keyframes splashPulse {
-  0%   { transform: scale(0.2); opacity: 0; }
-  25%  { transform: scale(1.18); opacity: 1; }
-  40%  { transform: scale(0.85); }
-  55%  { transform: scale(1.06); }
-  70%  { transform: scale(0.94); }
-  85%  { transform: scale(1.02); opacity: 1; }
-  100% { transform: scale(1.8); opacity: 0; }
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 

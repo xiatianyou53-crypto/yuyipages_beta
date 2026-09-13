@@ -122,11 +122,11 @@
         // 动画完成后移除（兼容不支持 animationend 的情况）
         setTimeout(function () {
           if (splash.parentNode) splash.classList.add('is-done');
-        }, 800);
-        // 兜底：2s 后强制移除
+        }, 1300);
+        // 兜底：2.5s 后强制移除
         setTimeout(function () {
           if (splash.parentNode) splash.remove();
-        }, 2000);
+        }, 2500);
       } else if (splash) {
         splash.remove();
       }
