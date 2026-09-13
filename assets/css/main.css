@@ -421,7 +421,7 @@ html.js .reveal.is-in {
   background: rgba(255, 255, 255, 0.96);
 }
 .splash-screen.is-done {
-  animation: splashVanish 0.7s cubic-bezier(0.4, 0, 0.6, 1) 0.2s forwards;
+  animation: splashVanish 0.5s cubic-bezier(0.4, 0, 0.6, 1) 0.1s forwards;
   pointer-events: none;
 }
 @keyframes splashVanish {
@@ -430,15 +430,15 @@ html.js .reveal.is-in {
 }
 .splash-logo {
   width: 160px; height: 160px;
-  animation: splashPulse 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: splashPulse 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 @keyframes splashPulse {
   0%   { transform: scale(0.2); opacity: 0; }
-  30%  { transform: scale(1.15); opacity: 1; }
-  45%  { transform: scale(0.88); }
-  60%  { transform: scale(1.05); }
-  75%  { transform: scale(0.96); }
-  90%  { transform: scale(1.01); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
+  25%  { transform: scale(1.18); opacity: 1; }
+  40%  { transform: scale(0.85); }
+  55%  { transform: scale(1.06); }
+  70%  { transform: scale(0.94); }
+  85%  { transform: scale(1.02); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
 }
 

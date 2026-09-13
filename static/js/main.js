@@ -1,4 +1,4 @@
-/* 语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏 / Logo题头动画） */
+/* 语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏 / 开场动画） */
 (function () {
   function onReady(fn) {
     if (document.readyState === 'loading') {
@@ -122,11 +122,11 @@
         // 动画完成后移除（兼容不支持 animationend 的情况）
         setTimeout(function () {
           if (splash.parentNode) splash.classList.add('is-done');
-        }, 2200);
-        // 兜底：3.5s 后强制移除
+        }, 800);
+        // 兜底：2s 后强制移除
         setTimeout(function () {
           if (splash.parentNode) splash.remove();
-        }, 3500);
+        }, 2000);
       } else if (splash) {
         splash.remove();
       }
