@@ -39,26 +39,32 @@ menu:
 
 params:
   author: '辽宁省实验中学语意报社'
-  description: '辽宁省实验中学语意报社官方网站：发布校园新闻与文化报道，并提供历届校报在线阅读与下载。'
+  description: '发布校园新闻与文化报道，并提供历届校报在线阅读与下载。'
   # 首页顶部标语（hero）
   heroTitle: '言吾心音'
-  heroSubtitle: '辽宁省实验中学语意报社 · 每一期报纸，都是我们与校园的对话'
+  heroSubtitle: '辽宁省实验中学语意报社'
   # 社交分享默认缩略图（og:image）；页面有 cover 时优先用 cover
   ogImage: '/images/cover-sample.svg'
   # 社团简介（首页"关于我们"区块）
-  aboutTitle: '关于校园语意报社'
+  aboutTitle: '关于语意报社'
   aboutBody: >
-    校园语意报社是辽宁省实验中学的校级学生社团。我们用文字与镜头记录校园里的每一个人、每一件事：
+    语意报社是辽宁省实验中学的校级学生社团。我们用文字与镜头记录校园里的每一个人、每一件事：
     从课堂内外的点滴，到运动会与艺术节的高光时刻；从学长学姐的备考经验，到老师们的谆谆教诲。
     我们相信，校园里最平凡的故事，也值得被郑重地书写与珍藏。欢迎热爱写作、摄影与编辑的你加入我们。
   # 首页轮播图（本地占位图；替换为真实校园照片时放 static/images/ 并改为 /images/xxx.jpg）
   carousel:
-    - image: '/images/slides/campus-1.svg'
-      caption: '晨光中的教学楼'
-    - image: '/images/slides/campus-2.svg'
-      caption: '操场上的少年'
-    - image: '/images/slides/campus-3.svg'
-      caption: '图书馆一角'
+    - image: '/images/slides/微信图片_2026-09-13_131602_584.jpg'
+      caption: '实验之秋'
+    - image: '/images/slides/微信图片_2026-09-13_131530_866.jpg'
+      caption: '实验之秋'
+    - image: '/images/slides/微信图片_2026-09-13_131545_664.jpg'
+      caption: '实验之春'
+    - image: '/images/slides/微信图片_2026-09-13_131454_648.jpg'
+      caption: '实验之春'
+    - image: '/images/slides/IMG_20251231_120426.jpg'
+      caption: '实验之冬'
+    - image: '/images/slides/Screenshot_20260816_134254_com.tencent.mm.jpg'
+      caption: 'QwQ'
 
 # 日期格式
 frontmatter:

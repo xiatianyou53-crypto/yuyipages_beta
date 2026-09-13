@@ -1,4 +1,4 @@
-/* 校园语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏） */
+/* 语意报社 —— 页面交互（菜单 / 轮播 / 滚动渐显 / 导航隐藏） */
 (function () {
   function onReady(fn) {
     if (document.readyState === 'loading') {

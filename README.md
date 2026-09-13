@@ -55,7 +55,7 @@ oauth-worker/            # (可选) Cloudflare Worker OAuth 代理，供后台�
 ```bash
 git init
 git add -A
-git commit -m "init 校园语意报社官网"
+git commit -m "init 语意报社官网"
 git branch -M main
 git remote add origin https://github.com/<你的用户名>/<仓库名>.git
 git push -u origin main
