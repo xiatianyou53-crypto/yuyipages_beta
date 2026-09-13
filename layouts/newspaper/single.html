@@ -11,21 +11,26 @@
 
     <div class="issue-actions">
       {{ with .Params.pdf }}
-      <a class="btn btn-primary" href="{{ . }}" download target="_blank" rel="noopener">⬇ 下载 PDF</a>
+      <a class="btn btn-primary" href="{{ . }}" target="_blank" rel="noopener">📖 在线阅读 PDF</a>
+      <a class="btn btn-outline btn-download" href="{{ . | replaceRE `\.pdf$` "?download=1" }}" download rel="noopener">⬇ 下载 PDF</a>
       {{ end }}
       <a class="btn btn-outline" href="/newspaper/">← 返回全部校报</a>
     </div>
 
     {{ with .Params.pdf }}
     <div class="pdf-frame-wrap">
+      <div class="pdf-mobile-hint">
+        <p>移动端可能无法内嵌预览 PDF，请点击上方"在线阅读 PDF"在新窗口中查看，或点击"下载 PDF"保存到本地。</p>
+      </div>
       <iframe
         class="pdf-frame"
-        src="{{ . }}"
+        src="{{ . }}#view=FitH"
         title="校报 PDF 预览：{{ $.Title }}"
         loading="lazy"
         allowfullscreen
-        referrerpolicy="no-referrer"></iframe>
-      <p class="pdf-tip">若上方预览无法显示，请使用右下角"在新窗口打开"，或直接点击上方"下载 PDF"。</p>
+        referrerpolicy="no-referrer"
+        sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+      <p class="pdf-tip">若预览无法显示，请点击上方"在线阅读 PDF"在新窗口中查看。</p>
     </div>
     {{ else }}
     <p class="empty-note">本期的 PDF 尚未上传。</p>
