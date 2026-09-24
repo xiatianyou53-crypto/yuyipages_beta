@@ -49,6 +49,7 @@ collections:
       - label: '出版日期（年月必填，日期可选）'
         name: date
         widget: yuyi-ymd
+        required: true
         hint: '年份与月份必填；日期可不填，未填日期时按当月1日参与排序'
       - label: 'PDF 文件'
         name: pdf

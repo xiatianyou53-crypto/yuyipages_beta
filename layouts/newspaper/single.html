@@ -5,8 +5,12 @@
   <article class="prose-card issue-detail">
     <header class="page-head issue-head">
       <h1 class="page-title">{{ .Title }}</h1>
-      {{ $issue := .Params.issue }}
-      <p class="card-meta">{{ if $issue }}{{ if (findRE "^[0-9]+$" $issue) }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }} · {{ end }}{{ .Date.Format "2006年01月02日" }}</p>
+      {{ with .Params.issue }}
+      {{ $issue := printf "%v" . }}
+      <p class="card-meta">{{ if findRE "^[0-9]+$" $issue }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }} · {{ $.Date.Format "2006年01月02日" }}</p>
+      {{ else }}
+      <p class="card-meta">{{ .Date.Format "2006年01月02日" }}</p>
+      {{ end }}
       {{ with .Params.summary }}<p class="issue-summary">{{ . }}</p>{{ end }}
     </header>
 

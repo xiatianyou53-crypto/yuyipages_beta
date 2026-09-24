@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{ $slides := site.Params.carousel | default slice }}
-{{ $issues := (where site.RegularPages "Section" "newspaper").ByDate.Reverse }}
+{{ $orderedIssues := (where site.RegularPages "Section" "newspaper").ByDate.Reverse }}
 {{ $latestIssue := false }}
-{{ if $issues }}{{ $latestIssue = index $issues 0 }}{{ end }}
+{{ if $orderedIssues }}{{ $latestIssue = index $orderedIssues 0 }}{{ end }}
 {{ $recentPosts := first 4 (where site.RegularPages "Section" "posts") }}
 
 <!-- Hero / 轮播 -->
@@ -65,9 +65,9 @@
         {{ end }}
       </a>
       <div class="issue-info">
-        {{ $issue := $latestIssue.Params.issue }}
-        {{ if $issue }}
-        <p class="issue-no">{{ if (findRE "^[0-9]+$" $issue) }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }}</p>
+        {{ with $latestIssue.Params.issue }}
+        {{ $issue := printf "%v" . }}
+        <p class="issue-no">{{ if findRE "^[0-9]+$" $issue }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }}</p>
         {{ end }}
         <h3 class="issue-title"><a href="{{ $latestIssue.RelPermalink }}">{{ $latestIssue.Title }}</a></h3>
         <p class="issue-date">{{ $latestIssue.Date.Format "2006年01月02日" }} 出版</p>

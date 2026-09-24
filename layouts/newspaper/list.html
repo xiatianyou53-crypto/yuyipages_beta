@@ -5,18 +5,23 @@
     {{ with .Content }}<div class="prose page-lead">{{ . }}</div>{{ end }}
   </header>
 
-  {{ $issues := .RegularPages.ByDate.Reverse }}
-  {{ if not $issues }}
+  {{ $orderedPages := .RegularPages.ByDate.Reverse }}
+  {{ $years := $orderedPages.GroupByDate "2006" }}
+  {{ if not $years }}
   <p class="empty-note">校报整理中，敬请期待。</p>
   {{ else }}
-    {{ range $issues.GroupByDate "2006" }}
+    {{ range $years.Reverse }}
     <section class="archive-year">
       <div class="archive-year-head">
         <h2 class="year-title">{{ .Key }} 年</h2>
         <span class="year-count">{{ len .Pages }} 期</span>
       </div>
+      {{ $months := .Pages.GroupByDate "2006-01" }}
+      {{ range $months.Reverse }}
+      <h3 class="archive-month-title">{{ .Key }}</h3>
       <ul class="cover-wall">
         {{ range .Pages }}
+        {{ $page := . }}
         {{ $t := .Title }}
         <li class="cover-item">
           <a href="{{ .RelPermalink }}">
@@ -29,13 +34,18 @@
             </div>
             <div class="cover-caption">
               <h3 class="cover-title">{{ .Title }}</h3>
-              {{ $issue := .Params.issue }}
-              <p class="cover-meta">{{ if $issue }}{{ if (findRE "^[0-9]+$" $issue) }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }} · {{ end }}{{ .Date.Format "2006年01月02日" }}</p>
+              {{ with $page.Params.issue }}
+              {{ $issue := printf "%v" . }}
+              <p class="cover-meta">{{ if findRE "^[0-9]+$" $issue }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }} · {{ $page.Date.Format "2006年01月02日" }}</p>
+              {{ else }}
+              <p class="cover-meta">{{ $page.Date.Format "2006年01月02日" }}</p>
+              {{ end }}
             </div>
           </a>
         </li>
         {{ end }}
       </ul>
+      {{ end }}
     </section>
     {{ end }}
   {{ end }}

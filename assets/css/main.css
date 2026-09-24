@@ -294,6 +294,7 @@ h1, h2, h3, h4 {
 .year-title { position: relative; margin: 0; padding-left: 16px; color: var(--ink); font-size: 1.3rem; font-weight: 700; }
 .year-title::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); }
 .year-count { font-size: 0.82rem; color: var(--ink-faint); letter-spacing: 0.12em; }
+.archive-month-title { margin: 0 0 var(--sp-3); color: var(--ink-soft); font-size: 0.95rem; font-weight: 600; }
 
 .cover-wall { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(176px, 1fr)); gap: var(--sp-6) var(--sp-5); }
 .cover-item a { display: block; color: inherit; }
@@ -442,4 +443,3 @@ html.js .reveal.is-in {
   80%  { opacity: 1; }
   100% { opacity: 0; }
 }
-
