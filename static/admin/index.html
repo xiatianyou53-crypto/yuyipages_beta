@@ -22,6 +22,12 @@
       function pad(value) { return value < 10 ? '0' + value : String(value); }
 
       var YuiYmdControl = createClass({
+        componentDidMount: function () {
+          if (!this.props.value) {
+            var now = new Date();
+            this.props.onChange(now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-01');
+          }
+        },
         handleChange: function (part, event) {
           var parts = parseParts(this.props.value);
           parts[part] = event.target.value;
