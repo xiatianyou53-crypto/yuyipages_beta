@@ -65,7 +65,10 @@
         {{ end }}
       </a>
       <div class="issue-info">
-        <p class="issue-no">第 {{ $latestIssue.Params.issue }} 期</p>
+        {{ $issue := $latestIssue.Params.issue }}
+        {{ if $issue }}
+        <p class="issue-no">{{ if (findRE "^[0-9]+$" $issue) }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }}</p>
+        {{ end }}
         <h3 class="issue-title"><a href="{{ $latestIssue.RelPermalink }}">{{ $latestIssue.Title }}</a></h3>
         <p class="issue-date">{{ $latestIssue.Date.Format "2006年01月02日" }} 出版</p>
         {{ with $latestIssue.Params.summary }}<p class="issue-summary">{{ . }}</p>{{ end }}

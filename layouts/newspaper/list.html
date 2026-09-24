@@ -29,7 +29,8 @@
             </div>
             <div class="cover-caption">
               <h3 class="cover-title">{{ .Title }}</h3>
-              <p class="cover-meta">第 {{ .Params.issue }} 期 · {{ .Date.Format "2006年01月02日" }}</p>
+              {{ $issue := .Params.issue }}
+              <p class="cover-meta">{{ if $issue }}{{ if (findRE "^[0-9]+$" $issue) }}第 {{ $issue }} 期{{ else }}{{ $issue }}{{ end }} · {{ end }}{{ .Date.Format "2006年01月02日" }}</p>
             </div>
           </a>
         </li>

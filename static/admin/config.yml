@@ -42,13 +42,14 @@ collections:
     folder: content/newspaper
     create: true
     identifier_field: title
-    summary: '第 {{issue}} 期 · {{date | date("YYYY年MM月DD日")}}'
+    summary: '{{title}} · {{date | date("YYYY年MM月DD日")}}'
     fields:
       - { label: '标题（期名）', name: title, widget: string, hint: '如：金秋特辑' }
-      - { label: '期数', name: issue, widget: number, value_type: int, min: 1, hint: '如：58' }
-      - label: '出版日期'
+      - { label: '期数（可空，可填数字或自定义名称）', name: issue, widget: string, required: false, hint: '留空则用户端不显示期数；填数字显示为"第58期"；也可填自定义名称（如：快讯）' }
+      - label: '出版日期（年月必填，日期可选）'
         name: date
-        widget: datetime
+        widget: yuyi-ymd
+        hint: '年份与月份必填；日期可不填，未填日期时按当月1日参与排序'
       - label: 'PDF 文件'
         name: pdf
         widget: file

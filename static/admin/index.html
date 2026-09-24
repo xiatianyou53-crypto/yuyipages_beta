@@ -8,6 +8,89 @@
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+  <script>
+    (function () {
+      var CMS = window.CMS;
+      if (!CMS || !CMS.registerWidget) return;
+
+      function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+      function parseParts(v) {
+        if (!v) return { y: new Date().getFullYear(), mo: new Date().getMonth() + 1, d: 1 };
+        var m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(String(v));
+        if (!m) return { y: new Date().getFullYear(), mo: new Date().getMonth() + 1, d: 1 };
+        return { y: parseInt(m[1], 10), mo: parseInt(m[2], 10), d: parseInt(m[3], 10) };
+      }
+
+      function YuiYmdControl(props) {
+        var box = document.createElement('div');
+        box.style.cssText = 'display:flex;gap:8px;align-items:center;flex-wrap:wrap;';
+        var parts = parseParts(props.value);
+
+        var ySel = document.createElement('select');
+        var y0 = 2006, y1 = new Date().getFullYear() + 1;
+        for (var y = y1; y >= y0; y--) {
+          var o = document.createElement('option');
+          o.value = y; o.textContent = y + ' 年';
+          if (y === parts.y) o.selected = true;
+          ySel.appendChild(o);
+        }
+
+        var mSel = document.createElement('select');
+        for (var mo = 1; mo <= 12; mo++) {
+          var o = document.createElement('option');
+          o.value = mo; o.textContent = mo + ' 月';
+          if (mo === parts.mo) o.selected = true;
+          mSel.appendChild(o);
+        }
+
+        var dSel = document.createElement('select');
+        var noDay = document.createElement('option');
+        noDay.value = ''; noDay.textContent = '日期（不填按1日）';
+        dSel.appendChild(noDay);
+        var hasDay = parts.d >= 1 && parts.d <= 31;
+        for (var d = 1; d <= 31; d++) {
+          var o = document.createElement('option');
+          o.value = d; o.textContent = d + ' 日';
+          if (hasDay && d === parts.d) o.selected = true;
+          dSel.appendChild(o);
+        }
+
+        function emit() {
+          var yy = parseInt(ySel.value, 10);
+          var mm = parseInt(mSel.value, 10);
+          var dd = dSel.value ? parseInt(dSel.value, 10) : 1;
+          var maxD = new Date(yy, mm, 0).getDate();
+          if (dd > maxD) dd = maxD;
+          props.onChange(yy + '-' + pad(mm) + '-' + pad(dd));
+        }
+        ySel.addEventListener('change', emit);
+        mSel.addEventListener('change', emit);
+        dSel.addEventListener('change', emit);
+
+        ySel.id = props.forID;
+        box.appendChild(ySel);
+        box.appendChild(mSel);
+        box.appendChild(dSel);
+        return box;
+      }
+
+      function YuiYmdPreview(props) {
+        var p = document.createElement('p');
+        var parts = parseParts(props.value);
+        var text = parts.y + ' 年 ' + parts.mo + ' 月';
+        if (parts.d >= 1 && parts.d <= 31 && /^\d{4}-\d{1,2}-\d{1,2}$/.test(String(props.value || ''))) {
+          text += ' ' + parts.d + ' 日';
+        } else {
+          text += '（未填日期，按当月1日）';
+        }
+        p.textContent = text;
+        return p;
+      }
+
+      CMS.registerWidget('yuyi-ymd', YuiYmdControl, YuiYmdPreview);
+    })();
+  </script>
   <!-- 配置文件默认读取本目录下的 config.yml -->
 </body>
 </html>
