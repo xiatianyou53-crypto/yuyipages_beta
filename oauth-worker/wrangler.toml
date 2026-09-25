@@ -7,3 +7,7 @@ compatibility_date = "2024-01-01"
 GITHUB_CLIENT_ID = "Ov23li1kGUZbfOMZsK36"
 # 仓库为公开用 public_repo；若 yuyipages_beta 是私有仓库，请改为 repo
 GITHUB_SCOPE = "repo"
+# 允许发起登录的来源（逗号分隔）。只有这里的 origin 才会收到授权结果，
+# 自定义域名上线后请把新域名加进来，例如：
+# "https://yuyipages-beta.pages.dev,https://yuyi.example.cn"
+ALLOWED_ORIGINS = "https://yuyipages-beta.pages.dev"

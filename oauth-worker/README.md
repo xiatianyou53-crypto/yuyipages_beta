@@ -28,3 +28,17 @@ cd oauth-worker
 wrangler dev
 ```
 浏览器访问 `http://localhost:8787/auth` 应跳转到 GitHub 登录页。
+
+## 安全：来源白名单（重要）
+Worker 只在**白名单内的站点 origin** 上回发授权结果（`postMessage` 不再使用 `"*"`），
+`/auth` 会校验请求来源、`/callback` 会从 `state` 取回并**再次校验**该 origin。
+
+- 配置项：Worker 变量 `ALLOWED_ORIGINS`（逗号分隔，例如
+  `"https://yuyipages-beta.pages.dev,https://yuyi.example.cn"`）。
+- 未配置时会回退到 `src/index.js` 里的 `DEFAULT_ALLOWED_ORIGINS`（默认是
+  `https://yuyipages-beta.pages.dev`）。
+- **绑定自定义域名后，务必把新域名加入 `ALLOWED_ORIGINS` 并重新部署**，否则后台登录会被拒绝。
+
+> 修改 Worker 代码或变量后需要**重新部署**才会生效：
+> 网页方式：Worker → Edit code 粘贴最新 `src/index.js` → Save and Deploy；
+> 命令行方式：`wrangler deploy`。
