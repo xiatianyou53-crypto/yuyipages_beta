@@ -14,7 +14,7 @@
 # Worker 代码见 oauth-worker/src/index.js（须部署到 Worker 域名 base_url 处）。
 backend:
   name: github
-  repo: xiatianyou53-crypto/yuyipages_beta
+  repo: MTeaCase/yuyipages_beta
   branch: main
   base_url: https://yuyi-cms-oauth.xiatianyou53.workers.dev
   auth_endpoint: auth

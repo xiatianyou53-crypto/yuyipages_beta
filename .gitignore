@@ -16,3 +16,6 @@ node_modules/
 # 环境 / 密钥（切勿提交真实 OAuth 密钥）
 .env
 wrangler.toml.local
+
+# Wrangler / Cloudflare 本地缓存（含账号信息，勿提交）
+.wrangler/
