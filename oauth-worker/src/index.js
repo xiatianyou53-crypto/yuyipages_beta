@@ -87,8 +87,9 @@ export default {
       if (!id) return plainText('配置错误：缺少 GITHUB_CLIENT_ID 变量。');
 
       const refererOrigin = originFromRequest(request);
-      const targetOrigin = isAllowed(refererOrigin, list)
-        ? refererOrigin
+      // 带了来源但不在白名单 → 直接拒绝；完全无来源时（单一白名单）才兜底放行
+      const targetOrigin = refererOrigin
+        ? (isAllowed(refererOrigin, list) ? refererOrigin : '')
         : (list.length === 1 ? list[0] : '');
       if (!targetOrigin) {
         return plainText('来源未授权：请从站点后台（/admin/）发起登录。');
