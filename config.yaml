@@ -61,9 +61,7 @@ params:
       caption: '实验之春'
     - image: '/images/slides/IMG_20251231_120426.jpg'
       caption: '实验之冬'
-    - image: '/images/slides/Screenshot_20260816_134254_com.tencent.mm.jpg'
-      caption: 'QwQ'
-
+    
 # 日期格式
 frontmatter:
   date: ['date', 'publishDate', 'lastmod']
