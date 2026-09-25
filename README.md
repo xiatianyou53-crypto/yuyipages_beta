@@ -8,6 +8,7 @@
 > - 发布内容的社员：见 **[docs/操作指南.md](docs/操作指南.md)**（登录 + 上传校报 PDF + 发文章）。
 > - 让 /admin/ 后台真正可用：见 **[docs/后台部署指南.md](docs/后台部署指南.md)**（OAuth App + Worker + Cloudflare Access + 邀请社员）。
 > - 想自己改外观/文字/配色/导航：见 **[docs/前端修改指南.md](docs/前端修改指南.md)**。
+> - 想知道"谁能改后台 / 怎么限制只有指定的人能改"：见 **[docs/后台权限与访问控制.md](docs/后台权限与访问控制.md)**。
 > - `oauth-worker/` 为可选组件（Cloudflare 方案 A 的后台登录 Worker）。
 
 > 目录说明：源码在仓库根目录；`public/` 为本地构建产物，不提交。
